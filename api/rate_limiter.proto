@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package limiter;
+
+option go_package = "github.com/flaneur4dev/good-limiter/internal/server/grpc/pb";
+
+service RateLimiter {
+  rpc Allow (AllowRequest) returns (AllowResponse);
+  rpc AddNet (AddRequest) returns (Response);
+  rpc DeleteNet (DeleteRequest) returns (Response);
+  rpc DropBucket (DropRequest) returns (Response);
+}
+
+message AllowRequest {
+  string login = 1;
+  string password = 2;
+  string ip = 3;
+}
+
+message AddRequest {
+  string sub_net = 1;
+  string list = 2;
+}
+
+message DeleteRequest {
+  string sub_net = 1;
+  string list = 2;
+}
+
+message DropRequest {
+  string login = 1;
+  string ip = 2;
+}
+
+message AllowResponse {
+  bool ok = 1;
+}
+
+message Response {
+  string message = 1;
+}

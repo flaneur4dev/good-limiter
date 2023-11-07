@@ -1,0 +1,16 @@
+services:
+  integration_tests:
+    build:
+      context: ../
+      dockerfile: build/test.Dockerfile
+    image: integration-tests:0.1
+    environment:
+      - TEST_DELAY=2s
+      - TEST_REQUEST_TIMEOUT=100ms
+      - TEST_GRPC=limiter:50051
+      - TEST_DB=redis:6379
+    depends_on:
+      - limiter
+      - redis
+    networks:
+      - db

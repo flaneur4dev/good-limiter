@@ -1,0 +1,20 @@
+quiet: False
+with-expecter: True
+outpkg: mocks
+mockname: "{{.InterfaceName}}"
+dir: "{{.InterfaceDir}}/mocks"
+filename: "{{.InterfaceName}}.go"
+packages:
+  github.com/flaneur4dev/good-limiter/internal/contracts:
+    interfaces:
+      Bucket:
+        config:
+          dir: mocks
+  github.com/flaneur4dev/good-limiter/internal/rate-limiter:
+    interfaces:
+      bucketStorage:
+        config:
+          mockname: BucketStorage
+      netStorage:
+        config:
+          mockname: NetStorage

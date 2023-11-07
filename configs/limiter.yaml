@@ -1,0 +1,15 @@
+logger:
+  level: "DEBUG"
+storage:
+  memory:
+    cleanup_interval: 2m
+  db:
+    host: "localhost:6379"
+    password: ""
+server:
+  grpc:
+    port: ":50051"
+constraints:
+  login: "10/m"
+  password: "100/m"
+  ip: "10/m"
