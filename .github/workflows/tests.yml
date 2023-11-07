@@ -31,17 +31,6 @@ jobs:
   integration_tests:
     runs-on: ubuntu-latest
 
-    services:
-      redis:
-        image: redis
-        ports:
-          - 6379:6379
-        options: >-
-          --health-cmd "redis-cli ping"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-
     steps:
       - name: Set up Go
         uses: actions/setup-go@v3
@@ -51,8 +40,5 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v3
 
-      - name: Build and run server
-        run: make run
-
       - name: Integration tests
-        run: go test -v -race ./tests
+        run: make integration-tests
