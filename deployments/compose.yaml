@@ -1,0 +1,23 @@
+services:
+  limiter:
+    build:
+      context: ../
+      dockerfile: build/limiter.Dockerfile
+    image: limiter:0.1
+    ports:
+      - "50051:50051"
+    depends_on:
+      - redis
+    restart: on-failure
+    networks:
+      - db
+
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
+    networks:
+      - db
+
+networks:
+  db:

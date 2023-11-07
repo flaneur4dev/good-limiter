@@ -1,0 +1,90 @@
+run:
+  tests: true
+  build-tags:
+    - bench
+    - !bench
+
+linters-settings:
+  funlen:
+    lines: 150
+    statements: 80
+  tagliatelle:
+    case:
+      rules:
+        json: snake
+        yaml: snake
+  depguard:
+    rules:
+      main:
+        allow:
+          - $gostd
+          - github.com/flaneur4dev/good-limiter/internal
+          - github.com/flaneur4dev/good-limiter/mocks
+          - github.com/redis/go-redis/v9
+          - github.com/stretchr/testify/mock
+          - github.com/stretchr/testify/require
+          - github.com/stretchr/testify/suite
+          - google.golang.org/grpc
+          - google.golang.org/protobuf
+          - gopkg.in/yaml.v3
+
+issues:
+  exclude-rules:
+    - path: _test\.go
+      linters:
+        - errcheck
+        - funlen
+        - dupl
+        - gocyclo
+        - gofumpt
+        - gosec
+        - noctx
+
+linters:
+  disable-all: true
+  enable:
+    - asciicheck
+    - bodyclose
+    - depguard
+    - dogsled
+    - dupl
+    - durationcheck
+    - errorlint
+    - exhaustive
+    - exportloopref
+    - funlen
+    # - gci
+    - gocognit
+    - goconst
+    - gocritic
+    - gocyclo
+    - godot
+    - gofmt
+    - gofumpt
+    - goheader
+    - goprintffuncname
+    - gosec
+    - gosimple
+    - govet
+    - importas
+    - ineffassign
+    - lll
+    - makezero
+    - misspell
+    - nestif
+    - nilerr
+    - noctx
+    # - nolintlint
+    - prealloc
+    - predeclared
+    - revive
+    - staticcheck
+    - stylecheck
+    - tagliatelle
+    - thelper
+    - typecheck
+    - unconvert
+    - unparam
+    - unused
+    - whitespace
+    
